@@ -16,15 +16,15 @@ Plugin 'godlygeek/tabular'
 Plugin 'lervag/vimtex'
 
 Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter' " Rust
-Plugin 'rust-lang/rust.vim'
+Plugin 'airblade/vim-gitgutter'
 
-" Haskell
-Plugin 'neovimhaskell/haskell-vim'
+" Languages
+" Plugin 'rust-lang/rust.vim'
+" Plugin 'neovimhaskell/haskell-vim'
 
 " Color schemes
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'tomasr/molokai'
+" Plugin 'altercation/vim-colors-solarized'
+" Plugin 'tomasr/molokai'
 Plugin 'morhetz/gruvbox'
 
 call vundle#end()
@@ -84,6 +84,15 @@ set foldcolumn=1
 
 " Save that juicy energy from pushing shift
 noremap ; :
+
+" splits
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+set splitbelow
+set splitright
+
 
 " Functions
 fun! TrimWhitespace()

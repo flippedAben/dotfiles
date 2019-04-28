@@ -27,6 +27,9 @@ Plugin 'airblade/vim-gitgutter'
 " Plugin 'tomasr/molokai'
 Plugin 'morhetz/gruvbox'
 
+" Markdown
+Plugin 'plasticboy/vim-markdown'
+
 call vundle#end()
 filetype plugin indent on
 

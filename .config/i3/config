@@ -113,7 +113,7 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # lock
-bindsym $mod+Shift+x exec "i3lock -u -i /home/ben/Pictures/backgrounds/lock.png"
+bindsym --release $mod+Shift+x exec slock
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -219,4 +219,4 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id "compton -cC"
 exec --no-startup-id nm-applet
 exec --no-startup-id "nitrogen --restore"
-exec --no-startup-id "sleep 2s && kalu"
+exec --no-startup-id "sleep 10s && kalu"

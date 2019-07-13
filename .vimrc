@@ -6,29 +6,18 @@ call vundle#begin()
 
 " Plugins
 Plugin 'VundleVim/Vundle.vim'
-
 Plugin 'ctrlp.vim'
 Plugin 'tComment'
 Plugin 'scrooloose/syntastic'
 Plugin 'godlygeek/tabular'
 
-" Plugin 'vim-airline/vim-airline'
 Plugin 'lervag/vimtex'
 
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 
-" Languages
-" Plugin 'rust-lang/rust.vim'
-" Plugin 'neovimhaskell/haskell-vim'
-
 " Color schemes
-" Plugin 'altercation/vim-colors-solarized'
-" Plugin 'tomasr/molokai'
 Plugin 'morhetz/gruvbox'
-
-" Markdown
-Plugin 'plasticboy/vim-markdown'
 
 call vundle#end()
 filetype plugin indent on
@@ -40,19 +29,18 @@ set ignorecase
 set smartcase
 
 " spaces
-set tabstop=2
-set softtabstop=0
+set tabstop=4
+set softtabstop=4
 set expandtab
-set shiftwidth=2
+set shiftwidth=0
 set autoindent
-set listchars=tab:⍈➞,eol:¶,trail:·
+set listchars=tab:◦◦,eol:◀,trail:·
 set list!
 
 " ui
 set number
 
 " for quick jumping
-" set rnu
 set wildmenu
 set wildmode=longest:list,full
 set lazyredraw
@@ -71,10 +59,6 @@ set incsearch
 set hlsearch
 hi Search ctermbg=208 ctermfg=239
 nnoremap <space> :nohlsearch<CR>
-
-" airline
-" set laststatus=2
-" set noshowmode
 
 " Allow spell check for certain files only
 autocmd FileType text,tex,markdown setlocal spell
@@ -96,6 +80,8 @@ nnoremap <C-H> <C-W><C-H>
 set splitbelow
 set splitright
 
+" My blog uses this
+autocmd BufRead,BufNewFile,BufEnter ~/projects/flippedaben.github.io/** setlocal tw=100
 
 " Functions
 fun! TrimWhitespace()
@@ -105,30 +91,10 @@ fun! TrimWhitespace()
 endfun
 command! TrimWhitespace call TrimWhitespace()
 
-" haskell C-- maps to ->
-fun! DoHaskell()
-  inoremap [ []<Left>
-  inoremap ( ()<Left>
-  inoremap { {}<Left>
-endfun
-autocmd FileType haskell call DoHaskell()
-
-" Go uses Tabs
-autocmd BufRead,BufNewFile,BufEnter ~/ut/sem5/virt/p2/gocode/** setlocal noexpandtab
-
-" Multicore and Computer Vision use 4 space indents
-autocmd BufRead,BufNewFile,BufEnter ~/ut/sem6/multicore/code/** setlocal ts=4
-autocmd BufRead,BufNewFile,BufEnter ~/ut/sem6/multicore/code/** setlocal shiftwidth=4
-autocmd BufRead,BufNewFile,BufEnter ~/ut/sem6/vision/** setlocal ts=4
-autocmd BufRead,BufNewFile,BufEnter ~/ut/sem6/vision/** setlocal shiftwidth=4
-
-" My blog uses this
-autocmd BufRead,BufNewFile,BufEnter ~/projects/flippedaben.github.io/** setlocal tw=100
-
 " Learning VIM shortcuts
 " put filename of current file into text
 fun! ReadCurrFileName()
-  r! echo %
+    r! echo %
 endfun
 command! Rcfn call ReadCurrFileName()
 

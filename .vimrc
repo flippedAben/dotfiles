@@ -1,34 +1,33 @@
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-
-call vundle#begin()
-
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'tComment'
-
-" Linter
-Plugin 'dense-analysis/ale'
-
-" Latex
-Plugin 'lervag/vimtex'
-
-" Git
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
+call plug#begin('~/.vim/plugged')
 
 " Color schemes
-Plugin 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox'
 
-" Markdown
-Plugin 'vim-pandoc/vim-pandoc'
-Plugin 'vim-pandoc/vim-pandoc-syntax'
+" Easy comments
+Plug 'preservim/nerdcommenter'
 
 " Auto complete
-Plugin 'Valloric/YouCompleteMe'
+Plug 'Shougo/deoplete.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
 
-call vundle#end()
-filetype plugin indent on
+" Linter
+Plug 'dense-analysis/ale', { 'for': 'python' }
+
+" Latex
+Plug 'lervag/vimtex'
+
+" Git
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+
+" Fuzzy search
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+
+" Go
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+call plug#end()
 
 " syntax processing
 syntax enable
@@ -53,7 +52,7 @@ set wildmenu
 set wildmode=longest:list,full
 set lazyredraw
 
-" Set each line to have a max of 80 characters
+" Set each line to have a character limit
 set tw=80
 
 " Color scheme in current use
@@ -105,8 +104,18 @@ command! Rcfn call ReadCurrFileName()
 " \ is too far of a reach
 let mapleader = ","
 
+" fzf
+noremap <Leader>f :FZF<CR>
+
+" easier global copy and paste
+noremap <Leader>y "*y
+noremap <Leader>p "*p
+
 " shortcut to replace words
 nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
+
+" put only one space after a period
+set nojoinspaces
 
 """"""""""""
 " markdown "
@@ -114,11 +123,6 @@ nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
 
 " Allow spell check for certain files only
 autocmd FileType text,tex,markdown setlocal spell
-
-autocmd BufRead,BufNewFile,BufEnter *.md call SetMarkdownSettings()
-function SetMarkdownSettings()
-    setlocal tw=100
-endfunction
 
 " My blog uses this
 autocmd BufRead,BufNewFile,BufEnter ~/projects/flippedaben.github.io/** setlocal tw=100
@@ -146,12 +150,18 @@ function AdhereToPEP8()
     let b:ale_fixers = ['autopep8']
 endfunction
 
-let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-
 """""""
 " ALE "
 """""""
 nmap <silent> <leader>aj :ALENext<CR>
 nmap <silent> <leader>ak :ALEPrevious<CR>
 
+".
+let g:deoplete#enable_at_startup = 1
+set completeopt+=noselect
+call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
+
+""""""""""""
+" Deoplete "
+""""""""""""
+inoremap <silent><expr> <TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"

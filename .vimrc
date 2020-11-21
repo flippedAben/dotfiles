@@ -75,8 +75,8 @@ set foldcolumn=1
 
 " Save that juicy energy from pushing shift
 noremap ; :
-imap kj <Esc>
-imap jk <Esc>
+"imap kj <Esc>
+"imap jk <Esc>
 
 " splits
 nnoremap <C-J> <C-W><C-J>
@@ -165,3 +165,8 @@ call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
 " Deoplete "
 """"""""""""
 inoremap <silent><expr> <TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" Commenter
+let g:NERDCreateDefaultMappings = 0
+nmap <leader>c <Plug>NERDCommenterToggle
+vmap <leader>c <Plug>NERDCommenterToggle

@@ -27,6 +27,10 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Go
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
+" Markdown
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+
 call plug#end()
 
 " syntax processing
@@ -43,6 +47,8 @@ set shiftwidth=0
 set autoindent
 set listchars=tab:◦◦,eol:◀,trail:·
 set list!
+
+set pastetoggle=<F2>
 
 " ui
 set number
@@ -123,9 +129,7 @@ set nojoinspaces
 
 " Allow spell check for certain files only
 autocmd FileType text,tex,markdown setlocal spell
-
-" My blog uses this
-autocmd BufRead,BufNewFile,BufEnter ~/projects/flippedaben.github.io/** setlocal tw=100
+autocmd FileType text,tex,markdown setlocal tw=80
 
 " don't show urls on links
 let g:pandoc#syntax#conceal#urls = 1
@@ -161,6 +165,8 @@ let g:deoplete#enable_at_startup = 1
 set completeopt+=noselect
 call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
 
+let g:ale_linters = { 'python': ['flake8'] }
+
 """"""""""""
 " Deoplete "
 """"""""""""
@@ -170,3 +176,14 @@ inoremap <silent><expr> <TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 let g:NERDCreateDefaultMappings = 0
 nmap <leader>c <Plug>NERDCommenterToggle
 vmap <leader>c <Plug>NERDCommenterToggle
+
+
+""""""""""""
+" TypeScript "
+""""""""""""
+au BufNewFile,BufRead,BufEnter *.ts,*.tsx call TypeScript()
+function TypeScript()
+    setlocal ts=2
+    setlocal softtabstop=2
+    setlocal shiftwidth=2
+endfunction

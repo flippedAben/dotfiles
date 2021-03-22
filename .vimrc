@@ -23,11 +23,15 @@ Plug 'airblade/vim-gitgutter'
 
 " Fuzzy search
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 " Go
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+"Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
-" Markdown
+" R
+Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
+
+" Markdown from pandoc
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 
@@ -112,6 +116,7 @@ let mapleader = ","
 
 " fzf
 noremap <Leader>f :FZF<CR>
+noremap <Leader>g :Rg<CR>
 
 " easier global copy and paste
 noremap <Leader>y "*y
@@ -177,6 +182,9 @@ let g:NERDCreateDefaultMappings = 0
 nmap <leader>c <Plug>NERDCommenterToggle
 vmap <leader>c <Plug>NERDCommenterToggle
 
+" R
+let maplocalleader = ","
+let R_assign = 0
 
 """"""""""""
 " TypeScript "

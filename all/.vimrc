@@ -14,9 +14,6 @@ Plug 'roxma/vim-hug-neovim-rpc'
 " Linter
 Plug 'dense-analysis/ale', { 'for': 'python' }
 
-" Latex
-Plug 'lervag/vimtex'
-
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
@@ -25,15 +22,13 @@ Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-" Go
-"Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-
 " R
 Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
 
 " Markdown from pandoc
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'vim-pandoc/vim-rmarkdown'
 
 call plug#end()
 
@@ -67,8 +62,6 @@ set tw=80
 
 " Color scheme in current use
 set background=dark
-" colorscheme solarized
-" colorscheme molokai
 colorscheme gruvbox
 
 " search (must be after color scheme section)
@@ -85,8 +78,6 @@ set foldcolumn=1
 
 " Save that juicy energy from pushing shift
 noremap ; :
-"imap kj <Esc>
-"imap jk <Esc>
 
 " splits
 nnoremap <C-J> <C-W><C-J>
@@ -104,13 +95,6 @@ fun! TrimWhitespace()
 endfun
 command! TrimWhitespace call TrimWhitespace()
 
-" Learning VIM shortcuts
-" put filename of current file into text
-fun! ReadCurrFileName()
-    r! echo %
-endfun
-command! Rcfn call ReadCurrFileName()
-
 " \ is too far of a reach
 let mapleader = ","
 
@@ -127,6 +111,16 @@ nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
 
 " put only one space after a period
 set nojoinspaces
+
+" jrnl
+au BufNewFile,BufRead,BufEnter /tmp/*.jrnl call JrnlStyle()
+function JrnlStyle()
+    setlocal spell
+    setlocal wrap
+    setlocal linebreak
+    setlocal tw=0
+    setlocal wrapmargin=0
+endfunction
 
 """"""""""""
 " markdown "
@@ -183,8 +177,13 @@ nmap <leader>c <Plug>NERDCommenterToggle
 vmap <leader>c <Plug>NERDCommenterToggle
 
 " R
-let maplocalleader = ","
 let R_assign = 0
+
+" vim-rmarkdown
+au BufNewFile,BufRead,BufEnter *.Rmd call RmdSettings()
+function RmdSettings()
+    nmap <F1> :RMarkdown<CR>
+endfunction
 
 """"""""""""
 " TypeScript "

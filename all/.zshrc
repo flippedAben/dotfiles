@@ -1,6 +1,6 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-export EDITOR='vim'
+export EDITOR='nvim'
 export PATH=$HOME/.gem/ruby/2.6.0/bin:$HOME/scripts:$PATH
 
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
@@ -18,7 +18,8 @@ source /usr/share/fzf/completion.zsh
 source /usr/share/fzf/key-bindings.zsh
 
 # Aliases
-alias svim='sudo -E vim'
+alias vim='nvim'
+alias svim='sudo -E nvim'
 alias resource='source ~/.zshrc'
 alias rm='rm -i'
 

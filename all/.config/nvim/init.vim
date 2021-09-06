@@ -13,6 +13,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
+" Sneak
+Plug 'justinmk/vim-sneak'
+
 " R
 Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
 
@@ -60,8 +63,9 @@ hi Search ctermbg=208 ctermfg=239
 nnoremap <space> :nohlsearch<CR>
 
 " easier global copy and paste
-noremap <Leader>y "*y
-noremap <Leader>p "*p
+noremap <Leader>y "+y
+noremap <Leader>p "+p
+set clipboard+=unnamedplus
 
 " Save those folds
 autocmd BufWinLeave *.tex mkview
@@ -93,16 +97,6 @@ nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
 " put only one space after a period
 set nojoinspaces
 
-" jrnl
-au BufNewFile,BufRead,BufEnter /tmp/*.jrnl call JrnlStyle()
-function JrnlStyle()
-    setlocal spell
-    setlocal wrap
-    setlocal linebreak
-    setlocal tw=0
-    setlocal wrapmargin=0
-endfunction
-
 " Allow spell check for certain files only
 autocmd FileType text,tex,markdown setlocal spell
 autocmd FileType text,tex,markdown setlocal tw=80
@@ -112,3 +106,8 @@ nmap <F2> <Plug>(coc-rename)
 
 " R
 let R_assign = 0
+
+" Sneak
+map f <Plug>Sneak_s
+map F <Plug>Sneak_S
+let g:sneak#s_next = 1

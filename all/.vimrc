@@ -116,10 +116,6 @@ set nojoinspaces
 au BufNewFile,BufRead,BufEnter /tmp/*.jrnl call JrnlStyle()
 function JrnlStyle()
     setlocal spell
-    setlocal wrap
-    setlocal linebreak
-    setlocal tw=0
-    setlocal wrapmargin=0
 endfunction
 
 """"""""""""

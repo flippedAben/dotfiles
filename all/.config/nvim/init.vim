@@ -2,6 +2,7 @@ call plug#begin(stdpath('data') . '/plugged')
 
 " Color schemes
 Plug 'morhetz/gruvbox'
+Plug 'sainnhe/sonokai'
 
 " Easy comments
 Plug 'preservim/nerdcommenter'
@@ -21,19 +22,8 @@ Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
 
 call plug#end()
 
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+" \ is too far of a reach
+let mapleader = ","
 
 " syntax processing
 syntax enable
@@ -41,22 +31,20 @@ syntax enable
 set ignorecase
 set smartcase
 
-" spaces
+" spacing
 set tabstop=4
 set softtabstop=4
 set expandtab
 set shiftwidth=0
 set listchars=tab:◦◦,eol:◀,trail:·
 set list!
+set tw=80
 
 " ui
 set number
 
-" Set each line to have a character limit
-set tw=80
-
 " Color scheme in current use
-colorscheme gruvbox
+colorscheme sonokai
 
 " search (must be after color scheme section)
 hi Search ctermbg=208 ctermfg=239
@@ -66,10 +54,6 @@ nnoremap <space> :nohlsearch<CR>
 noremap <Leader>y "+y
 noremap <Leader>p "+p
 set clipboard+=unnamedplus
-
-" Save those folds
-autocmd BufWinLeave *.tex mkview
-autocmd BufWinEnter *.tex loadview
 
 set foldcolumn=1
 
@@ -83,9 +67,6 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 set splitbelow
 set splitright
-
-" \ is too far of a reach
-let mapleader = ","
 
 " fzf
 noremap <Leader>f :FZF<CR>
@@ -104,6 +85,25 @@ autocmd FileType text,tex,markdown setlocal tw=80
 " CoC
 nmap <F2> <Plug>(coc-rename)
 
+" Use tab for completion.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Commenter
+let g:NERDCreateDefaultMappings = 0
+nmap <leader>c <Plug>NERDCommenterToggle
+vmap <leader>c <Plug>NERDCommenterToggle
+
 " R
 let R_assign = 0
 
@@ -111,3 +111,14 @@ let R_assign = 0
 map f <Plug>Sneak_s
 map F <Plug>Sneak_S
 let g:sneak#s_next = 1
+
+" Markdown
+au BufNewFile,BufRead,BufEnter *.md,*.jrnl call MarkdownSettings()
+function MarkdownSettings()
+    setlocal encoding=utf-8
+    setlocal tabstop=2
+    setlocal softtabstop=2
+    setlocal shiftwidth=2
+    setlocal expandtab
+    setlocal autoindent
+endfunction

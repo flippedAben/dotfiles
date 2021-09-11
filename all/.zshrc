@@ -10,6 +10,9 @@ ZSH_THEME="custom"
 HYPHEN_INSENSITIVE="true"
 DISABLE_UPDATE_PROMPT="true"
 
+setopt HIST_IGNORE_SPACE
+HISTORY_IGNORE="(cd|ls *)"
+
 plugins=(git vi-mode)
 source $ZSH/oh-my-zsh.sh
 
@@ -22,6 +25,7 @@ alias vim='nvim'
 alias svim='sudo -E nvim'
 alias resource='source ~/.zshrc'
 alias rm='rm -i'
+alias jrnl=' jrnl'
 
 # Node version manager
 source /usr/share/nvm/init-nvm.sh

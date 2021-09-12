@@ -47,7 +47,6 @@ set number
 colorscheme sonokai
 
 " search (must be after color scheme section)
-hi Search ctermbg=208 ctermfg=239
 nnoremap <space> :nohlsearch<CR>
 
 " easier global copy and paste

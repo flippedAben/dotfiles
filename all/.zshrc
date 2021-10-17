@@ -1,17 +1,11 @@
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-export EDITOR='nvim'
-export PATH=$HOME/.gem/ruby/2.6.0/bin:$HOME/scripts:$PATH
-
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
-export FZF_DEFAULT_COMMAND='rg --files'
-
 ZSH_THEME="custom"
 HYPHEN_INSENSITIVE="true"
 DISABLE_UPDATE_PROMPT="true"
 
-setopt HIST_IGNORE_SPACE
-HISTORY_IGNORE="(cd|ls *)"
+# path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+export EDITOR='nvim'
+export PATH=$HOME/.gem/ruby/2.6.0/bin:$HOME/scripts:$PATH
 
 plugins=(git vi-mode)
 source $ZSH/oh-my-zsh.sh
@@ -19,19 +13,31 @@ source $ZSH/oh-my-zsh.sh
 # fzf shortcuts: Ctrl-r, Ctrl-t, Alt-c
 source /usr/share/fzf/completion.zsh
 source /usr/share/fzf/key-bindings.zsh
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
+export FZF_DEFAULT_COMMAND='rg --files'
 
-# Aliases
+# history
+setopt HIST_IGNORE_SPACE
+setopt HIST_IGNORE_DUPS
+setopt HIST_EXPIRE_DUPS_FIRST
+HISTORY_IGNORE="(cd|ls *)"
+
+# aliases
 alias vim='nvim'
 alias svim='sudo -E nvim'
 alias resource='source ~/.zshrc'
 alias rm='rm -i'
 alias jrnl=' jrnl'
 
-# Node version manager
+## color aliases
+alias ip='ip --color=auto'
+alias diff='diff --color=auto'
+
+# node version manager
 source /usr/share/nvm/init-nvm.sh
 
-# Poetry
+# poetry
 export PATH="$HOME/.poetry/bin:$PATH"
 
-# Miniconda
+# miniconda
 . "$HOME/.miniconda3/etc/profile.d/conda.sh"

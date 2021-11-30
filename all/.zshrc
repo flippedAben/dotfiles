@@ -33,11 +33,14 @@ alias jrnl=' jrnl'
 alias ip='ip --color=auto'
 alias diff='diff --color=auto'
 
-# node version manager
-source /usr/share/nvm/init-nvm.sh
-
 # poetry
 export PATH="$HOME/.poetry/bin:$PATH"
 
 # miniconda
-. "$HOME/.miniconda3/etc/profile.d/conda.sh"
+# . "$HOME/.miniconda3/etc/profile.d/conda.sh"
+
+# nvm
+export PATH=~/.nvm/versions/node/v16.13.0/bin:$PATH
+export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

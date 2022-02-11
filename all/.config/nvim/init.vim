@@ -1,5 +1,8 @@
 call plug#begin(stdpath('data') . '/plugged')
 
+" Fix bad habits
+Plug 'takac/vim-hardtime'
+
 Plug 'morhetz/gruvbox'
 Plug 'sainnhe/sonokai'
 
@@ -13,6 +16,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
 
 call plug#end()
+
+" Fix bad habits
+let g:hardtime_default_on = 1
 
 " convenient remaps
 let mapleader = ","
@@ -72,7 +78,6 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
 
 " R
 let R_assign = 0

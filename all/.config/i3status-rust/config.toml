@@ -27,6 +27,8 @@ format = "{1m}"
 
 [[block]]
 block = "sound"
+driver = "alsa"
+device = "hw:1"
 
 [[block]]
 block = "time"

@@ -1,4 +1,10 @@
+"""""""""""""""""""""""""""""""
+" Deprecated in favor of Neovim
+"""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
+
+" Fix bad habits
+Plug 'takac/vim-hardtime'
 
 " Color schemes
 Plug 'morhetz/gruvbox'
